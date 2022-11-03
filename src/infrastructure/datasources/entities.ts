@@ -5,51 +5,51 @@ import {
   DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
-} from "typeorm";
-import shortid from "shortid"
+  UpdateDateColumn,
+} from 'typeorm';
+import shortid from 'shortid';
 
 class BaseEntity {
   @PrimaryGeneratedColumn()
-  id: number
+  id: number;
 
   @CreateDateColumn({
-    nullable: false
+    nullable: false,
   })
-  createdAt: Date
+  createdAt: Date;
 
   @UpdateDateColumn({
-    nullable: false
+    nullable: false,
   })
-  updatedAt: Date
+  updatedAt: Date;
 
   @DeleteDateColumn({
-    nullable: false
+    nullable: false,
   })
-  deletedAt: Date
+  deletedAt: Date;
 }
 
 class UidEntity extends BaseEntity {
   @Column({
-    nullable: false
+    nullable: false,
   })
-  uid: string
+  uid: string;
 
   @BeforeInsert()
   generateUid() {
-    this.uid = shortid.generate()
+    this.uid = shortid.generate();
   }
 }
 
 @Entity()
 export class UserEntity extends UidEntity {
   @Column({
-    nullable: false
+    nullable: false,
   })
-  name: string
+  name: string;
 
   @Column({
-    nullable: false
+    nullable: false,
   })
-  email: string
+  email: string;
 }
