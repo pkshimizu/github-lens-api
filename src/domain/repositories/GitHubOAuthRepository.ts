@@ -1,3 +1,3 @@
 export interface GitHubOAuthRepository {
-  getAccessToken(code: string): string
+  getAccessToken(code: string): string;
 }
