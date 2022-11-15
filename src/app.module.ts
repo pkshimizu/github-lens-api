@@ -12,9 +12,11 @@ const config = ConfigModule.forRoot({
 });
 
 import { ormoptions } from './ormconfig';
+import { HttpModule } from '@nestjs/axios';
 const db = TypeOrmModule.forRoot(ormoptions);
 
 @Module({
+  imports: [config, HttpModule],
   controllers: [SessionController],
   providers: [
     SessionService,

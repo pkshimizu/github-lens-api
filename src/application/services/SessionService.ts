@@ -8,8 +8,12 @@ export class SessionService {
     private readonly gitHubOAuthRepository: GitHubOAuthRepository,
   ) {}
 
-  signInWithGitHub(code: string): string {
-    const accessToken = this.gitHubOAuthRepository.getAccessToken(code);
+  async signInWithGitHub(code: string): Promise<string> {
+    const accessToken = await this.gitHubOAuthRepository.getAccessToken(code);
+    console.log(accessToken);
+    // github user情報を取得
+    // user情報を保存
+    // セッションを作成
     return '';
   }
 }

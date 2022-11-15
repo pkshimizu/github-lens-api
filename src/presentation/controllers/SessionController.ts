@@ -7,8 +7,10 @@ export class SessionController {
   constructor(private readonly sessionService: SessionService) {}
 
   @Post()
-  create(@Body() request: SessionPostRequest): SessionPostResponse {
-    this.sessionService.signInWithGitHub(request.code);
+  async create(
+    @Body() request: SessionPostRequest,
+  ): Promise<SessionPostResponse> {
+    await this.sessionService.signInWithGitHub(request.code);
     return {
       token: '',
     };
