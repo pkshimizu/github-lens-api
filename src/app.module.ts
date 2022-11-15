@@ -3,8 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { SessionController } from './presentation/controllers/session';
-import { SessionService } from './application/services/session';
+import { SessionController } from './presentation/controllers/SessionController';
+import { SessionService } from './application/services/SessionService';
 import { GitHubOAuthAccessor } from './infrastructure/externals/GitHubOAuthAccessor';
 
 const config = ConfigModule.forRoot({

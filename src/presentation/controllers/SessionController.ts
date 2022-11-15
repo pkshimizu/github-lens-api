@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { SessionPostRequest, SessionPostResponse } from 'github-lens-types';
-import { SessionService } from '../../application/services/session';
+import { SessionService } from '../../application/services/SessionService';
 
 @Controller('sessions')
 export class SessionController {
