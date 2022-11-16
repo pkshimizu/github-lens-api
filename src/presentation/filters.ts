@@ -8,10 +8,12 @@ export class AllExceptionFilter implements ExceptionFilter {
     const context = host.switchToHttp();
     const response = context.getResponse<Response>();
     if (exception instanceof ApplicationError) {
+      console.error(exception);
       response.status(exception.status as number).json({
         message: exception.message,
       });
     } else if (exception instanceof Error) {
+      console.error(exception);
       response.status(500).json({
         message: exception.message,
       });

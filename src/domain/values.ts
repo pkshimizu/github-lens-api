@@ -1,10 +1,9 @@
-import {Dayjs} from "dayjs";
-import dayjs from "../lib/dayjs";
+import * as dayjs from 'dayjs';
 
 export class DateTime {
-  constructor(private readonly datetime: Dayjs) {
-  }
-  static parse(text: string): DateTime {
-    return new DateTime(dayjs(text))
-  }
+  constructor(private readonly datetime: dayjs.Dayjs) {}
+}
+
+export function parseDateTime(text: string): DateTime {
+  return new DateTime(dayjs(text));
 }
