@@ -4,6 +4,6 @@ export class DateTime {
   constructor(private readonly datetime: dayjs.Dayjs) {}
 }
 
-export function parseDateTime(text: string): DateTime {
-  return new DateTime(dayjs(text));
+export function parseDateTime(value: string | Date): DateTime {
+  return new DateTime(dayjs(value));
 }

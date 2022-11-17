@@ -1,6 +1,7 @@
 import { CustomNamingStrategy } from './lib/typeorm';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
+import { join } from 'path';
 
 const datasourceOptions: DataSourceOptions = {
   type: 'mysql',
@@ -18,10 +19,11 @@ const datasourceOptions: DataSourceOptions = {
 
 export const ormoptions: TypeOrmModuleOptions = {
   ...datasourceOptions,
-  entities: ['src/infrastructure/datasources/*.js'],
+  entities: [join(__dirname, '/infrastructure/datasources/*.js')],
   migrations: ['src/migrations/**/*.js'],
 };
 
 const source = new DataSource(datasourceOptions);
+void source.initialize();
 
 export default source;

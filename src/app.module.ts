@@ -13,16 +13,22 @@ const config = ConfigModule.forRoot({
 
 import { ormoptions } from './ormconfig';
 import { HttpModule } from '@nestjs/axios';
+import { UserAccessor } from './infrastructure/datasources/UserAccessor';
+import { UserEntity } from './infrastructure/datasources/entities';
 const db = TypeOrmModule.forRoot(ormoptions);
 
 @Module({
-  imports: [config, HttpModule],
+  imports: [config, HttpModule, TypeOrmModule.forFeature([UserEntity])],
   controllers: [SessionController],
   providers: [
     SessionService,
     {
       provide: 'GitHubOAuthRepository',
       useClass: GitHubOAuthAccessor,
+    },
+    {
+      provide: 'UserRepository',
+      useClass: UserAccessor,
     },
   ],
 })

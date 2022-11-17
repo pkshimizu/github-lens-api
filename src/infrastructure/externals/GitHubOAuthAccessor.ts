@@ -35,11 +35,11 @@ export class GitHubOAuthAccessor implements GitHubOAuthRepository {
     const data = response.data;
     return {
       login: data.login,
-      avatar_url: data.avatar_url,
+      avatarUrl: data.avatar_url,
       name: data.name,
       email: data.email,
-      created_at: parseDateTime(data.created_at),
-      updated_at: parseDateTime(data.updated_at),
+      createdAt: parseDateTime(data.created_at),
+      updatedAt: parseDateTime(data.updated_at),
     };
   }
 }

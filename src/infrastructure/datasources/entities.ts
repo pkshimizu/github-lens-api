@@ -52,4 +52,12 @@ export class UserEntity extends UidEntity {
     nullable: false,
   })
   email: string;
+
+  @Column({
+    nullable: false,
+  })
+  githubLoginId: string;
+
+  @Column()
+  avatarUrl: string;
 }
