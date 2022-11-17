@@ -7,7 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import shortid from 'shortid';
+import * as shortid from 'shortid';
 
 class BaseEntity {
   @PrimaryGeneratedColumn()

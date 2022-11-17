@@ -2,6 +2,7 @@ import { CustomNamingStrategy } from './lib/typeorm';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { join } from 'path';
+import { UserEntity } from './infrastructure/datasources/entities';
 
 const datasourceOptions: DataSourceOptions = {
   type: 'mysql',
@@ -12,15 +13,13 @@ const datasourceOptions: DataSourceOptions = {
   database: process.env.DB_NAME ?? 'github_lens',
   synchronize: false,
   logging: process.env.ENV === 'local',
-  entities: ['src/infrastructure/datasources/*.ts'],
-  migrations: ['src/migrations/**/*.ts'],
+  entities: [UserEntity],
+  migrations: [join(__dirname, '/migrations/**/*.js')],
   namingStrategy: new CustomNamingStrategy(),
 };
 
 export const ormoptions: TypeOrmModuleOptions = {
   ...datasourceOptions,
-  entities: [join(__dirname, '/infrastructure/datasources/*.js')],
-  migrations: ['src/migrations/**/*.js'],
 };
 
 const source = new DataSource(datasourceOptions);
