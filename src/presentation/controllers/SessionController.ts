@@ -10,9 +10,9 @@ export class SessionController {
   async create(
     @Body() request: SessionPostRequest,
   ): Promise<SessionPostResponse> {
-    await this.sessionService.signInWithGitHub(request.code);
+    const token = await this.sessionService.signInWithGitHub(request.code);
     return {
-      token: '',
+      token,
     };
   }
 }
