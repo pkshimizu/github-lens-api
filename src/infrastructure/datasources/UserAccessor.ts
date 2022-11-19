@@ -30,15 +30,24 @@ export class UserAccessor implements UserRepository {
       user.avatarUrl = gitHubUser.avatarUrl;
       await this.repository.save(user);
     }
+    return this.toUser(user);
+  }
+
+  async findUserByUid(uid: string): Promise<User> {
+    const user = await this.repository.findOneBy({ uid });
+    return this.toUser(user);
+  }
+
+  private toUser(userEntity: UserEntity): User {
     return {
-      id: user.id,
-      uid: user.uid,
-      name: user.name,
-      email: user.email,
-      githubLoginId: user.githubLoginId,
-      avatarUrl: user.avatarUrl,
-      createdAt: parseDateTime(user.createdAt),
-      updatedAt: parseDateTime(user.updatedAt),
+      id: userEntity.id,
+      uid: userEntity.uid,
+      name: userEntity.name,
+      email: userEntity.email,
+      githubLoginId: userEntity.githubLoginId,
+      avatarUrl: userEntity.avatarUrl,
+      createdAt: parseDateTime(userEntity.createdAt),
+      updatedAt: parseDateTime(userEntity.updatedAt),
     };
   }
 }

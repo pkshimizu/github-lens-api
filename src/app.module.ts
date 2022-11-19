@@ -16,6 +16,10 @@ import { HttpModule } from '@nestjs/axios';
 import { UserAccessor } from './infrastructure/datasources/UserAccessor';
 import { UserEntity } from './infrastructure/datasources/entities';
 import { JwtModule } from '@nestjs/jwt';
+import { JwtStrategy } from './presentation/strategies';
+import { PassportModule } from '@nestjs/passport';
+import { UserController } from './presentation/controllers/UserController';
+import { UserService } from './application/services/UserService';
 const db = TypeOrmModule.forRoot(ormoptions);
 
 @Module({
@@ -35,10 +39,13 @@ const db = TypeOrmModule.forRoot(ormoptions);
       },
       inject: [ConfigService],
     }),
+    PassportModule,
   ],
-  controllers: [SessionController],
+  controllers: [SessionController, UserController],
   providers: [
     SessionService,
+    UserService,
+    JwtStrategy,
     {
       provide: 'GitHubOAuthRepository',
       useClass: GitHubOAuthAccessor,

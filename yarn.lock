@@ -2923,7 +2923,7 @@ get-stream@^6.0.0:
 
 github-lens-types@pkshimizu/github-lens-types:
   version "1.0.1"
-  resolved "https://codeload.github.com/pkshimizu/github-lens-types/tar.gz/90ca00f4928b2d3913662ee74611c339b61ebe1d"
+  resolved "https://codeload.github.com/pkshimizu/github-lens-types/tar.gz/e5b49f00a9efedbd5ab93f9b090efafac1120424"
 
 glob-parent@^5.1.2, glob-parent@~5.1.2:
   version "5.1.2"

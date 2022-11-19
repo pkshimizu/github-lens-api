@@ -4,7 +4,7 @@ import { UserRepository } from '../../domain/repositories/UserRepository';
 import { User } from '../../domain/models';
 import { JwtService } from '@nestjs/jwt';
 
-type JwtPayload = {
+export type JwtPayload = {
   userId: number;
 };
 

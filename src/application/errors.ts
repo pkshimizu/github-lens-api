@@ -13,3 +13,9 @@ export class ValidationError extends ApplicationError {
     super(message, HttpStatus.BAD_REQUEST);
   }
 }
+
+export class NotFoundResourceError extends ApplicationError {
+  constructor(public message: string) {
+    super(message, HttpStatus.NOT_FOUND);
+  }
+}
