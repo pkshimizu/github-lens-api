@@ -1,34 +1,13 @@
 version: "3"
 services:
   api:
-    image: node:16
+    build: .
     ports:
-      - "5050:3000"
+      - "15000:5000"
+    container_name: github-lens-api
     volumes:
-      - .:/app
-    tty: true
-    working_dir: /app
-    command: yarn start:hmr
-    networks:
-      - github_lens_nw
-    depends_on:
-      - db
-
-  db:
-    image: mysql:latest
-    platform: linux/x86_64
+      - ./app:/app
     environment:
-      MYSQL_ROOT_HOST: '%'
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: github_lens
-      MYSQL_USER: github_lens_user
-      MYSQL_PASSWORD: github_lens_password
-    volumes:
-      - ./docker/db/data:/var/lib/mysql
-    ports:
-      - "33066:3306"
-    networks:
-      - github_lens_nw
-
-networks:
-  github_lens_nw:
+      ENV: local
+      FLASK_APP: api/main
+    command: flask run --host=0.0.0.0
