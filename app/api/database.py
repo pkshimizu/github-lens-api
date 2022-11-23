@@ -8,4 +8,5 @@ db = SQLAlchemy()
 def setup_db(app: Flask):
     db.init_app(app)
     from app.api.infrastructure.datasources import entities
+
     Migrate(app, db)

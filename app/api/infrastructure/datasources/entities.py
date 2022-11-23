@@ -8,7 +8,9 @@ from app.api.database import db
 class BaseEntity:
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     created_at = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    updated_at = db.Column(db.DateTime, default=datetime.now(), onupdate=datetime.now(), nullable=False)
+    updated_at = db.Column(
+        db.DateTime, default=datetime.now(), onupdate=datetime.now(), nullable=False
+    )
     deleted_at = db.Column(db.DateTime)
 
 
