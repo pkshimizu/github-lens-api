@@ -1,6 +1,17 @@
 from dataclasses import dataclass, asdict
 from datetime import datetime
 
+from flask import Request
+
+
+@dataclass
+class BaseRequest:
+    def __init__(self, request: Request):
+        self.request = request
+
+    def get_str(self, name: str):
+        return self.request.json.get("name")
+
 
 @dataclass
 class BaseResponse:
