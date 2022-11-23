@@ -3,10 +3,14 @@ from flask_injector import FlaskInjector
 
 from app.api.application import ApplicationServiceModule
 from app.api.application.errors import ValidationError, AuthenticationError
+from app.api.config import load_config
+from app.api.database import setup_db
 from app.api.presentation.controllers.system_controller import system_module
 from app.api.presentation.serializers.base import ErrorResponse
 
 app = Flask(__name__)
+
+load_config(app)
 
 FlaskInjector(app=app, modules=[ApplicationServiceModule])
 
@@ -32,3 +36,5 @@ def handle_exception(e: Exception):
 
 
 app.register_blueprint(v1_modules)
+
+setup_db(app)
