@@ -8,5 +8,5 @@ from app.api.infrastructure.externals import ExternalModule
 
 def setup_injector(app: Flask):
     FlaskInjector(
-        app=app, modules=[ApplicationServiceModule, DataSourceModule, ExternalModule]
+        app=app, modules=[DataSourceModule, ExternalModule, ApplicationServiceModule]
     )

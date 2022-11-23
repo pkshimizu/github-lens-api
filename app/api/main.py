@@ -1,7 +1,6 @@
 from flask import Flask, Blueprint
-from flask_injector import FlaskInjector
+from flask_jwt_extended import JWTManager
 
-from app.api.application import ApplicationServiceModule
 from app.api.application.errors import ValidationError, AuthenticationError
 from app.api.config import load_config
 from app.api.database import setup_db
@@ -39,5 +38,8 @@ def handle_exception(e: Exception):
 app.register_blueprint(v1_modules)
 
 setup_db(app)
+
+jwt = JWTManager()
+jwt.init_app(app)
 
 setup_injector(app)
