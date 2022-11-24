@@ -10,7 +10,7 @@ class BaseRequest:
         self.request = request
 
     def get_str(self, name: str):
-        return self.request.json.get("name")
+        return self.request.json.get(name)
 
 
 @dataclass

@@ -1,4 +1,5 @@
 from flask import Flask, Blueprint
+from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 
 from app.api.application.errors import ValidationError, AuthenticationError
@@ -10,6 +11,8 @@ from app.api.presentation.controllers.system_controller import system_module
 from app.api.presentation.serializers.base import ErrorResponse
 
 app = Flask(__name__)
+
+CORS(app)
 
 load_config(app)
 
@@ -32,6 +35,7 @@ def handle_authentication_error(e: AuthenticationError):
 
 @v1_modules.errorhandler(Exception)
 def handle_exception(e: Exception):
+    app.logger.error(e)
     return ErrorResponse(str(e), 500).data()
 
 
