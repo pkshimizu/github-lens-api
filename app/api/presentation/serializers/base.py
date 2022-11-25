@@ -3,6 +3,8 @@ from datetime import datetime
 
 from flask import Request
 
+from app.api.domain.models import User
+
 
 @dataclass
 class BaseRequest:
@@ -45,3 +47,13 @@ class ErrorResponse(BaseResponse):
         self.message = message
 
     message: str
+
+
+@dataclass
+class CurrentUser:
+    def __init__(self, user_id: int, user_uid: str):
+        self.id = user_id
+        self.uid = user_uid
+
+    id: int
+    uid: str

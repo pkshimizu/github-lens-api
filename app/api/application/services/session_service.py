@@ -17,5 +17,5 @@ class SessionService:
         access_token = self.github_repository.get_access_token(code)
         github_user = self.github_repository.get_user(access_token)
         user = self.user_repository.save_user(github_user)
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=user)
         return access_token

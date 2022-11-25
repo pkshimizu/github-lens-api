@@ -9,5 +9,9 @@ class UserRepository(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def find_user(self, uid: str) -> User:
+    def find_user_by_id(self, id: int) -> User:
+        pass
+
+    @abstractmethod
+    def find_user_by_uid(self, uid: str) -> User:
         pass
