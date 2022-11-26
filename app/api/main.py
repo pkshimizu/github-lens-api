@@ -41,7 +41,7 @@ def handle_authentication_error(e: AuthenticationError):
 
 @v1_modules.errorhandler(Exception)
 def handle_exception(e: Exception):
-    app.logger.error(e)
+    app.logger.exception("handle exception")
     return ErrorResponse(str(e), 500).data()
 
 
