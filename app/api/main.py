@@ -6,14 +6,16 @@ from app.api.application.errors import ValidationError, AuthenticationError
 from app.api.config import load_config
 from app.api.database import setup_db
 from app.api.domain.models import User
-from app.api.infrastructure.datasources.entities import UserEntity
 from app.api.injector import setup_injector
+from app.api.logger import setup_logger
 from app.api.presentation.controllers.session_controller import session_module
 from app.api.presentation.controllers.system_controller import system_module
 from app.api.presentation.controllers.user_controller import user_module
 from app.api.presentation.serializers.base import ErrorResponse, CurrentUser
 
 app = Flask(__name__)
+
+setup_logger(app)
 
 CORS(app)
 

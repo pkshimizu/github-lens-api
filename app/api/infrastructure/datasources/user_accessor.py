@@ -1,5 +1,3 @@
-from pprint import pprint
-
 from app.api.database import db
 from app.api.domain.models import User, GitHubUser
 from app.api.domain.repositories.user_repository import UserRepository
