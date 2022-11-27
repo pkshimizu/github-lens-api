@@ -3,8 +3,6 @@ from datetime import datetime
 
 from flask import Request
 
-from app.api.domain.models import User
-
 
 @dataclass
 class BaseRequest:
@@ -28,7 +26,7 @@ class BaseResponse:
         if value is None:
             return None
 
-        return value.strftime("%Y-%m-%d %H:%M:%S")
+        return value.isoformat()
 
 
 @dataclass
