@@ -19,7 +19,9 @@ def to_user(user_entity: UserEntity) -> User:
 
 class UserAccessor(UserRepository):
     def save_user(self, github_user: GitHubUser) -> User:
-        user_entity = UserEntity()
+        user_entity = UserEntity.query.filter_by(github_login_id=github_user.login).one_or_none()
+        if user_entity is None:
+            user_entity = UserEntity()
         user_entity.name = github_user.name
         user_entity.email = github_user.email
         user_entity.github_login_id = github_user.login
